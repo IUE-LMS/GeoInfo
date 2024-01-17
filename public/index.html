@@ -1,17 +1,85 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <!--Browser Icon-->
     <link rel="icon" href="<%= BASE_URL %>favicon-geoinfo.ico">
+
+    <!--StyleSheet-->
+    <link href = "styles.css" rel = "stylesheet">
+
+    <!--App title-->
     <title>Geo Info</title>
   </head>
+
   <body>
+
+    <!--UI form for postcode input and submission-->>
+        <form>
+          <p><b>Postcode: </b></p>
+          <p><input type="text" name="postcode" id="postcode" placeholder="e.g. BT41 1XP"></p>
+     
+          <button type = "button" id = "search" onclick = "fetchAPIData(document.getElementById('postcode').value)">Search</button> 
+        </form>
+
+        <p>
+          alert(result);
+        </p>
+
+        
+    <!--Error Handling - Missing Javascript-->
     <noscript>
       <strong>We're sorry but Geo Info doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
+   
+   
+
+   <script>
+    //called onclick of search button
+      function fetchAPIData(postcode) { 
+
+      //Debugging code
+      // alert('Sent Request');
+      //postcode = "BT411RG"
+
+      this.responseAvailable = false;
+      fetch("https://api.postcodes.io/postcodes/" + postcode, {
+          "method": "GET",
+      })
+
+      //Error handling on returned response
+      .then(response => { 
+          if(response.ok){
+              return response.json()    
+          } else{
+              alert("Server returned " + response.status + " : " + response.statusText);
+          }                
+      })
+
+      //response data
+      .then(response => {
+          this.result = response.body; 
+          this.responseAvailable = true;
+      })
+      
+    
+      //Error handling on data storing
+      .catch(err => {
+          console.log(err);
+      });
+
+
+      }
+
+   </script>
+
+    <div id="app">
+        {{ info }}
+    </div>
+ 
   </body>
+
 </html>

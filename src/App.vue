@@ -5,11 +5,13 @@
 
   <!-- <img alt="Free stock image by Lina Kivaka" src="./assets/Postbox.jpeg"> -->
       
-    <form>
+  <!--  <form>
       <p><b>Postcode: </b></p>
       <p><input type="text" required v-model="postcode" placeholder="e.g. BT41 1XP"></p>
-      <button type="submit">Search</button>    
-    </form>
+
+      <button type = "button" id = "search" @click = "fetchAPIData">Search</button> 
+    </form> -->
+
         
   </div>
 </template>
