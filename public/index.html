@@ -25,9 +25,11 @@
           <button type = "button" id = "search" onclick = "fetchAPIData(document.getElementById('postcode').value)">Search</button> 
         </form>
 
-        <p>
-          alert(result);
-        </p>
+        <!--returning json response is formatted and outputted to here -->
+        <div class="output"></div>
+
+        
+
 
         
     <!--Error Handling - Missing Javascript-->
@@ -45,6 +47,9 @@
       // alert('Sent Request');
       //postcode = "BT411RG"
 
+      const output = document.querySelector('.output');
+
+
       this.responseAvailable = false;
       fetch("https://api.postcodes.io/postcodes/" + postcode, {
           "method": "GET",
@@ -59,20 +64,36 @@
           }                
       })
 
-      //response data
-      .then(response => {
-          this.result = response.body; 
-          this.responseAvailable = true;
-      })
-      
-    
-      //Error handling on data storing
-      .catch(err => {
-          console.log(err);
+      //make this conditional based on response state otherwise unnecessarily running
+      .then(updateHTML)
+
+
+      function updateHTML(data) {
+
+        // Get the object entries and the array of key/value pairs
+        const entries = Object.entries(data);
+
+        // Iterate over the entries and return new array
+        // of strings created from the key/value using a
+        // template string
+        const rows = entries.map(([key, value]) => {
+         //return according to this table logic
+          return `
+            <tr>
+              <td class="heading">${key}</td>
+              <td>${value}</td>
+            </tr>
+          `;
       });
 
+// Create a new HTML string by `join`ing up the row array
+// and adding it to a new string
+const html = `<table><tbody>${rows.join('')}</tbody></table>`;
 
-      }
+// Insert the HTML into the page
+output.insertAdjacentHTML('beforeend', html);
+}
+  }
 
    </script>
 
@@ -83,3 +104,4 @@
   </body>
 
 </html>
+
