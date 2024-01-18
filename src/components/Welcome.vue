@@ -1,12 +1,13 @@
+<!-- The Welcome component contains the welcome text and app information provided to the user -->
 
 
+<!--This the html element which uses the placeholder of msg in the script element,
+   which dynamically changes according to data changes (reactively re-renders ) 
+  Template tags toggle it's content based on conditional statements if provided -->
 <template>
     <div class="hello">
       <h1>{{ msg }}</h1>
-      <p>
-        Search for geographical information based on postcodes
-       
-      </p>
+
      
     </div>
 

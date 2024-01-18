@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+  <!-- This is the only HTML file needed in this Vue project which gets served -->
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,12 +14,13 @@
 
     <!--App title-->
     <title>Geo Info</title>
+
   </head>
 
   <body>
 
-    <!--UI form for postcode input and submission-->>
-        <form>
+    <!--UI form for postcode input and submission-->
+       <form>
           <p><b>Postcode: </b></p>
           <p><input type="text" name="postcode" id="postcode" placeholder="e.g. BT41 1XP"></p>
      
@@ -97,6 +99,7 @@ output.insertAdjacentHTML('beforeend', html);
 
    </script>
 
+<!--Root DOM node - This is where the vue app is mounted in the html-->
     <div id="app">
         {{ info }}
     </div>
