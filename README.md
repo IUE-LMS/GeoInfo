@@ -1,9 +1,9 @@
 # Geo Info App
 
-README Last edited on: 18/01/24
+README Last edited on: 19/01/24
 by: Shelagh Monaghan
 
-Project code last edited: 18/01/24
+Project code last edited: 19/01/24
 by: Shelagh Monaghan
 
 *See Github repo for more details on commits
@@ -74,4 +74,3 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 All images are under free to use licences on stock image sites for the purposes of demonstration and personal projects
 Favicon by Mayor Icons https://www.freepik.com/icon/globe_11984866
-Postbox.jpeg by Lina Kivaka https://www.pexels.com/@lina/

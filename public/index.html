@@ -7,95 +7,18 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
     <!--Browser Icon-->
-    <link rel="icon" href="<%= BASE_URL %>favicon-geoinfo.ico">
-
-    <!--StyleSheet-->
-    <link href = "styles.css" rel = "stylesheet">
-
-    <!--App title-->
-    <title>Geo Info</title>
+    <link rel="icon" href="favicon-geoinfo.ico">
 
   </head>
 
   <body>
-
-    <!--UI form for postcode input and submission-->
-       <form>
-          <p><b>Postcode: </b></p>
-          <p><input type="text" name="postcode" id="postcode" placeholder="e.g. BT41 1XP"></p>
-     
-          <button type = "button" id = "search" onclick = "fetchAPIData(document.getElementById('postcode').value)">Search</button> 
-        </form>
-
-        <!--returning json response is formatted and outputted to here -->
-        <div class="output"></div>
-
-        
-
-
-        
+ 
     <!--Error Handling - Missing Javascript-->
     <noscript>
       <strong>We're sorry but Geo Info doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-   
-   
 
    <script>
-    //called onclick of search button
-      function fetchAPIData(postcode) { 
-
-      //Debugging code
-      // alert('Sent Request');
-      //postcode = "BT411RG"
-
-      const output = document.querySelector('.output');
-
-
-      this.responseAvailable = false;
-      fetch("https://api.postcodes.io/postcodes/" + postcode, {
-          "method": "GET",
-      })
-
-      //Error handling on returned response
-      .then(response => { 
-          if(response.ok){
-              return response.json()    
-          } else{
-              alert("Server returned " + response.status + " : " + response.statusText);
-          }                
-      })
-
-      //make this conditional based on response state otherwise unnecessarily running
-      .then(updateHTML)
-
-
-      function updateHTML(data) {
-
-        // Get the object entries and the array of key/value pairs
-        const entries = Object.entries(data);
-
-        // Iterate over the entries and return new array
-        // of strings created from the key/value using a
-        // template string
-        const rows = entries.map(([key, value]) => {
-         //return according to this table logic
-          return `
-            <tr>
-              <td class="heading">${key}</td>
-              <td>${value}</td>
-            </tr>
-          `;
-      });
-
-// Create a new HTML string by `join`ing up the row array
-// and adding it to a new string
-const html = `<table><tbody>${rows.join('')}</tbody></table>`;
-
-// Insert the HTML into the page
-output.insertAdjacentHTML('beforeend', html);
-}
-  }
 
    </script>
 
